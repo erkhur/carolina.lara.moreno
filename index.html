@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lamor Card</title>
+
+<!-- FAVICON -->
+<link rel="icon" type="image/png" href="img/logo_lamor.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* VARIABLES (LIGHT MODE) */
+:root {
+  --bg: linear-gradient(135deg, #1c1c1c, #2f2f2f);
+  --card-bg: rgba(255,255,255,0.9);
+  --text: #333;
+  --accent: #1f3c5a;
+}
+
+/* DARK MODE */
+.dark {
+  --bg: linear-gradient(135deg, #0f172a, #020617);
+  --card-bg: rgba(15,23,42,0.9);
+  --text: #e5e7eb;
+  --accent: #60a5fa;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg);
+  font-family: 'Montserrat', sans-serif;
+  transition: 0.4s;
+}
+
+.card {
+  width: 700px;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity:0; transform: translateY(20px);}
+  to {opacity:1; transform: translateY(0);}
+}
+
+.left {
+  flex: 2;
+  padding: 35px;
+}
+
+h1 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 30px;
+  color: var(--text);
+}
+
+.subtitle {
+  margin-top: 10px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.info {
+  margin-top: 25px;
+  line-height: 1.8;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text);
+  transition: 0.3s;
+}
+
+a:hover {
+  color: #0077ff;
+}
+
+/* BUTTONS */
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+}
+
+.btn-whatsapp {
+  background: #25D366;
+  color: white;
+}
+
+.btn-save {
+  background: var(--accent);
+  color: white;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/* DARK MODE BUTTON */
+.toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  background: var(--card-bg);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* RIGHT */
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.circle {
+  background: var(--accent);
+  color: white;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  transition: 0.4s;
+}
+
+.circle:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+/* LOGO ANIMADO */
+.logo img {
+  width: 160px;
+  height: auto;
+  margin-top: 10px;
+  mix-blend-mode: multiply;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0);}
+  50% { transform: translateY(-8px);}
+  100% { transform: translateY(0);}
+}
+
+.qr {
+  margin-top: 10px;
+}
+
+@media(max-width:768px){
+  .card {
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .right {
+    flex-direction: row;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="toggle" onclick="toggleMode()">🌙 / ☀️</div>
+
+<div class="card">
+
+  <div class="left">
+    <h1>Carolina Lara M.</h1>
+
+    <div class="subtitle">
+      AMER Regional <br>
+      Operations & Project Manager
+    </div>
+
+    <div class="info">
+      📞 <a href="https://wa.me/51943232981" target="_blank">+51 943 232 981</a><br>
+      📧 <a href="mailto:carolina.lara@lamor.com">carolina.lara@lamor.com</a><br><br>
+
+      📍 <a href="https://www.google.com/maps/search/?api=1&query=Calle+Amador+Merino+Reyna+496+San+Isidro+Lima+Peru" target="_blank">
+        Calle Amador Merino Reyna 496 Off 303 <br>
+        San Isidro, Lima<br>
+        PERÚ
+      </a><br><br>
+
+      🌐 <a href="https://www.lamor.com" target="_blank">www.lamor.com</a>
+    </div>
+
+    <div class="buttons">
+      <button class="btn btn-whatsapp" onclick="openWhatsApp()">WhatsApp</button>
+      <button class="btn btn-save" onclick="downloadVCF()">Guardar contacto</button>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="circle">
+      LET´S CLEAN<br>THE WORLD
+    </div>
+
+    <div class="qr">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://www.lamor.com" />
+    </div>
+
+    <div class="logo">
+      <img src="img/logo_lamor.png" alt="LAMOR Logo">
+    </div>
+  </div>
+
+</div>
+
+<script>
+
+function toggleMode() {
+  document.body.classList.toggle("dark");
+}
+
+function openWhatsApp() {
+  window.open("https://wa.me/51943232981", "_blank");
+}
+
+function downloadVCF() {
+  const vcfData = `BEGIN:VCARD
+VERSION:3.0
+FN:Carolina Lara
+ORG:Lamor
+TITLE:Operations & Project Manager
+TEL:+51943232981
+EMAIL:carolina.lara@lamor.com
+ADR:Calle Amador Merino Reyna 496, San Isidro, Lima, Peru
+END:VCARD`;
+
+  const blob = new Blob([vcfData], { type: "text/vcard" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "contacto.vcf";
+  link.click();
+}
+
+</script>
+
+</body>
+</html>
